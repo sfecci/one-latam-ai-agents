@@ -1,0 +1,49 @@
+# Project 03 – AI Email Automation with Make
+
+**ARI Flow** is a no-code automation that reads incoming emails, decides which ones can be answered automatically, replies using company documentation, and sends the rest to a human.
+
+Built with **Make.com, Gmail, Google Drive and Google Gemini**, without writing code.
+
+> This project was built while following Class 3 of the **LAD ONE 2026 Immersion**. The use case (answering Oracle-related questions) is the example scenario from the class.
+
+---
+
+## The problem
+
+Support teams spend a lot of time answering the same questions by email. Many of these answers already exist in internal documents.
+
+## The solution
+
+ARI Flow checks the inbox every 15 minutes and handles each email on its own:
+
+1. **Reads new emails** from Gmail.
+2. **Classifies each email** with Gemini: is it an Oracle question (yes / no)?
+3. **If yes:** gets the latest version of the company document from Google Drive and uses Gemini to write a reply based on that content.
+4. **If no:** sends the email to a human for follow-up.
+5. **Sends the reply** through Gmail.
+
+## Key ideas
+
+- **RAG in automation, not just in chat.** In a chat, a person still asks the questions and checks the answers. Here, the agent works on its own from start to finish.
+- **Simple binary classifier.** A yes/no decision is fast, reliable and easy to test.
+- **Living knowledge base.** Anyone in the team can update the Google Drive document, and the flow uses the newest version automatically. No changes in Make are needed.
+- **Human in the loop for the rest.** Emails the agent should not answer go to a person.
+
+## Tools
+
+| Tool | Purpose |
+|---|---|
+| Make.com | Builds and runs the workflow (7 modules) |
+| Gmail | Receives emails and sends replies |
+| Google Drive | Stores the knowledge base document |
+| Google Gemini | Classifies emails and writes replies |
+
+## Testing
+
+I tested the flow with Oracle and non-Oracle emails to check that the agent made the right decision in each case, then scheduled it to run every 15 minutes.
+
+## What I learned
+
+- How to design an automation where AI makes decisions without a person in the middle.
+- How to connect AI models to real company documents (RAG).
+- How to build and test a multi-step workflow in Make.
